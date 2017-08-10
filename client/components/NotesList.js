@@ -3,59 +3,53 @@ import { connect } from 'react-redux';
 import { Component } from 'react';
 import { fetchNotes } from './../actions/notesActions';
 
-//function NotesList({ Mnotes }) {
+import store from './App';
+
+import Note from './Note';
 
 class NotesList extends React.Component	{
 
-	componentDidMount() {
-		//this.props.fetchNotes();
-		fetch('/api/notes')
-			.then(  
-		    function(response) {  
-		      if (response.status !== 200) {  
-		        console.log('Looks like there was a problem. Status Code: ' +  response.status);  
-		        return;  
-		      }
-		      // Examine the text in the response  
-		      response.json().then(function(data) {  
-		        console.log(data);  
-		      });  
-		    }  
-		  )  
-		  .catch(function(err) {  
-		    console.log('Fetch Error :-S', err);  
-		  });
+	constructor(props) {
+		super(props);
+		/*this.state = {
+			notes: ""
+		};*/
+		//console.log("NoteList first state ", this.state.notes)
 	}
 
-	render(){
-	return (
-		<div>
-			{this.props.notes}
-		</div>
-	);
+	componentDidMount() {
+		this.props.fetchNotes();
+		//console.log("Component did mount props", this.props.notes);
+		console.log("Component did mount state", this.state);
+	}
+
+	componentWillReceiveProps() {
+		//console.log("Will received props ", this.props.notes)
+		console.log("This state on WillReceiveProps ", this.state);
+	}
+
+	render() {
+		let result = this.props.notes;
+		console.log(result);
+		return (
+			<div>
+				<ul>
+					{this.props.notes.map((note) => 
+						<Note note={note} key={note._id}/>)}
+				</ul>
+			</div>
+		);
  }
+}
+
+NotesList.propTypes = {
+	notes: React.PropTypes.array.isRequired
 }
 
 function mapStateToProps(state) {
 	return {
-		notes: "Vadim"
+		notes: state.notes
 	}
 }
-
-/*export default function NotesList({ notes })	{
-	const emptyMessage = (
-		<p>There are no notes yet in the collection</p>
-	);
-
-	const notesList = (
-		<p>Notes List</p>
-	);
-
-	return (
-		<div>
-			{notes.length === 0 ? emptyMessage : notesList}
-		</div>
-	);
-}*/
 
 export default connect(mapStateToProps, {fetchNotes})(NotesList);
