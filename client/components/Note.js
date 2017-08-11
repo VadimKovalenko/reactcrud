@@ -4,7 +4,7 @@ export default class Note extends React.Component {
 	render(){
 		return (
 			<div className = "note">
-				<p>{this.props.note.name}</p>
+				<p>{this.props.note.text}</p>
 			</div>
 		)
 	}

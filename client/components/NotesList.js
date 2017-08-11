@@ -6,33 +6,23 @@ import { fetchNotes } from './../actions/notesActions';
 import store from './App';
 
 import Note from './Note';
+import NoteForm from './NoteForm';
 
 class NotesList extends React.Component	{
-
-	constructor(props) {
-		super(props);
-		/*this.state = {
-			notes: ""
-		};*/
-		//console.log("NoteList first state ", this.state.notes)
-	}
-
+	
 	componentDidMount() {
 		this.props.fetchNotes();
-		//console.log("Component did mount props", this.props.notes);
-		console.log("Component did mount state", this.state);
+		//console.log("Component did mount state", this.state);
 	}
 
-	componentWillReceiveProps() {
-		//console.log("Will received props ", this.props.notes)
-		console.log("This state on WillReceiveProps ", this.state);
+	componentDidUpdate() {
+		//console.log("This props Update", this.props.notes);	
 	}
 
 	render() {
-		let result = this.props.notes;
-		console.log(result);
 		return (
 			<div>
+				<NoteForm/>
 				<ul>
 					{this.props.notes.map((note) => 
 						<Note note={note} key={note._id}/>)}

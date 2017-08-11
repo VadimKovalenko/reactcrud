@@ -25,6 +25,26 @@ app.get('/api/notes', (req, res) => {
 	})
 })
 
+app.post('/api/notes', (req, res) => {
+	//console.log(req.body);
+	var newNote = new Note();
+	newNote.text = req.body.text;
+	newNote.color = req.body.color;
+	newNote.save(function(err, note) {
+		if (err) return console.error(err);
+		res.send(note);
+		console.log('Request from server to add note ' + note);
+	});
+})
+
+/*app.use((req, res) => {
+	res.status(404).json({
+		errors: {
+			global: "Something went wrong"
+		}
+	})
+})*/
+
 const server = app.listen(serverPort, function() {
     console.log(`Server is up and running on port ${serverPort}`);
 });

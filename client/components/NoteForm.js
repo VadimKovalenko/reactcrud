@@ -2,33 +2,46 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
-import { getNotes } from './../actions/notes';
+import { saveNote } from './../actions/notesActions';
 
-class NoteForm extends Component {
+class NoteForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      text: '',
+      color: ''
+    }
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
 	addNote(e) {
 		e.preventDefault();
-		//console.log("add note", this.noteText.value);
+    //Validation
+    //let errors = {};
+    //this.setState({ errors });
+    let text = this.state.text;
+    let color = this.state.color;
+    this.props.saveNote({ text, color });
 	}
 
   render() {
-  	//console.log("add note", this.noteText.value);
-  	console.log(this.props.notes);
     return (
      	<div style={{textAlign: 'center'}}>
         <h1>Form</h1>
         <form onSubmit={this.addNote.bind(this)}>
-        	<input type="text" ref={(input) => {this.noteText = input}}/>
+          <label htmlFor="text">Type your text</label>
+          <input type="text" name="text" value={this.state.text} onChange={this.handleChange.bind(this)}/>
+          <br/> 
+          <label htmlFor="color">Type your color</label>
+        	<input type="text" name="color" value={this.state.color} onChange={this.handleChange.bind(this)}/>
+          <br/>
         	<button>Add</button>
         </form>
       </div>);
   }
 }
 
-/*export default connect(
-	state => ({
-		notes: state.notes
-	}),
-	dispatch => getNotes()
-)(NoteForm);*/
-
-//export default NoteForm;
+export default connect(null, { saveNote })(NoteForm);

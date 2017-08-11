@@ -6,21 +6,16 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import PropTypes from 'prop-types';
-import NoteForm from './NoteForm';
 import NotesList from './NotesList';
 
 import reducer from './../reducers';
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export default class App extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
   render() {
     return (
         <Provider store={store}>
-        	<NotesList notes = {this.props.notes}/>
+        	<NotesList/>
         </Provider>
 		);
   }
@@ -30,5 +25,3 @@ export default class App extends React.Component {
 store.subscribe(() => {
 	console.log('subscribe', store.getState());
 });
-
-console.log('First App state ', store.getState());
