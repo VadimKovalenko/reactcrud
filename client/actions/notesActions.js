@@ -20,7 +20,6 @@ export function setNotes(notes) {
 }
 
 export function addNoteAction(note) {
-	console.log('Note from action function ', note)
 	return {
 		type: ADD_NOTE,
 		note
@@ -55,6 +54,5 @@ export function saveNote(data) {
 				}
 			}).then(handleResponse)
 				.then(data => dispatch(addNoteAction(data)))
-				.then(console.log("Data from last promise ", data))
 	}	
 } 
