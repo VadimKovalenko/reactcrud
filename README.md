@@ -1,5 +1,6 @@
 React CRUD Application
 ===
+![react-crud-schema](https://user-images.githubusercontent.com/8011539/29223805-8deb6fa2-7ed0-11e7-8eea-ed645b37c15b.png)
 
 Installation:
 
