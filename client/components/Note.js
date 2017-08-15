@@ -10,3 +10,7 @@ export default class Note extends React.Component {
 	}
 
 }
+
+Note.propTypes = {
+  note: React.PropTypes.object.isRequired
+}

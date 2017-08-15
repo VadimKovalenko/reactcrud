@@ -12,12 +12,8 @@ class NotesList extends React.Component	{
 	
 	componentDidMount() {
 		this.props.fetchNotes();
-		//console.log("Component did mount state", this.state);
 	}
 
-	componentDidUpdate() {
-		//console.log("This props Update", this.props.notes);	
-	}
 
 	render() {
 		return (

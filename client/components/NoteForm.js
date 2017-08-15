@@ -5,12 +5,14 @@ import { connect } from 'react-redux';
 import { saveNote } from './../actions/notesActions';
 
 class NoteForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       text: '',
       color: ''
     }
+    this.addNote = this.addNote.bind(this);
+    this.handleChange = this.handleChange.bind(this); 
   }
 
   handleChange(e) {
@@ -19,24 +21,22 @@ class NoteForm extends React.Component {
 
 	addNote(e) {
 		e.preventDefault();
-    //Validation
-    //let errors = {};
-    //this.setState({ errors });
     let text = this.state.text;
     let color = this.state.color;
     this.props.saveNote({ text, color });
+    text, color = '';
 	}
 
   render() {
     return (
      	<div style={{textAlign: 'center'}}>
         <h1>Form</h1>
-        <form onSubmit={this.addNote.bind(this)}>
+        <form onSubmit={this.addNote}>
           <label htmlFor="text">Type your text</label>
-          <input type="text" name="text" value={this.state.text} onChange={this.handleChange.bind(this)}/>
+          <input type="text" name="text" value={this.state.text} onChange={this.handleChange}/>
           <br/> 
           <label htmlFor="color">Type your color</label>
-        	<input type="text" name="color" value={this.state.color} onChange={this.handleChange.bind(this)}/>
+        	<input type="text" name="color" value={this.state.color} onChange={this.handleChange}/>
           <br/>
         	<button>Add</button>
         </form>
