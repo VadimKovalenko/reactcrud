@@ -37,6 +37,31 @@ app.post('/api/notes', (req, res) => {
 	});
 })
 
+app.put('/api/notes/:id/updating', (req, res) => {
+	console.log(req.body);
+	Note.findOneAndUpdate(
+		{_id: req.body.id},
+		{
+			$set:	{
+				text: req.body.text
+			}
+		}, 
+		{new: true},
+		function(err, note) {
+			if (err) return res.send(err)
+			res.json(note);
+			console.log('Request from server to update note ' + note);
+		});
+})	
+
+app.delete('/api/notes/:_id', (req, res) => {
+	var note_id = req.params._id;
+	console.log("Deleted note ", note_id);
+	Note.remove({_id: note_id}, function(err, doc) {
+		res.json();
+	});
+})
+
 /*app.use((req, res) => {
 	res.status(404).json({
 		errors: {

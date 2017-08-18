@@ -1,5 +1,7 @@
 export const SET_NOTES = 'SET_NOTES';
 export const ADD_NOTE = 'ADD_NOTE';
+export const DEL_NOTE = 'DEL_NOTE';
+export const UPDATED_NOTE = 'UPDATED_NOTE';
 
 
 function handleResponse(response) {
@@ -22,6 +24,21 @@ export function setNotes(notes) {
 export function addNoteAction(note) {
 	return {
 		type: ADD_NOTE,
+		note
+	}
+}
+
+function deleteNoteAction(noteId) {
+	return {
+		type: DEL_NOTE,
+		noteId
+	}
+}
+
+function UpdatingNoteAction(note) {
+	console.log(note);
+	return {
+		type: UPDATED_NOTE,
 		note
 	}
 }
@@ -55,4 +72,31 @@ export function saveNote(data) {
 			}).then(handleResponse)
 				.then(data => dispatch(addNoteAction(data)))
 	}	
+}
+
+export function UpdatingNote(data) {
+	return dispatch => {
+			return fetch(`/api/notes/${data.id}/updating`, {
+				method: 'put',
+				body: JSON.stringify(data),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			}).then(handleResponse)
+				.then(data => dispatch(UpdatingNoteAction(data)))
+	}
+}
+
+
+export function deleteNote(id) {
+	return dispatch => {
+		console.log("Note deleted", id);
+		return fetch(`/api/notes/${id}`, {
+			method: 'delete',
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then(handleResponse)
+			.then(data => dispatch(deleteNoteAction(id)))
+	}
 } 
