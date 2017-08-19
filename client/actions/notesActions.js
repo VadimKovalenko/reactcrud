@@ -5,6 +5,7 @@ export const UPDATED_NOTE = 'UPDATED_NOTE';
 
 
 function handleResponse(response) {
+	console.log(response.status);
 	if(response.ok) {
 		return response.json();
 	} else {
@@ -36,7 +37,7 @@ function deleteNoteAction(noteId) {
 }
 
 function UpdatingNoteAction(note) {
-	console.log(note);
+	console.log("UpdatingNoteAction " + note);
 	return {
 		type: UPDATED_NOTE,
 		note
@@ -97,6 +98,6 @@ export function deleteNote(id) {
 				"Content-Type": "application/json"
 			}
 		}).then(handleResponse)
-			.then(data => dispatch(deleteNoteAction(id)))
+			.then(() => dispatch(deleteNoteAction(id)))
 	}
 } 

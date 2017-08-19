@@ -58,7 +58,7 @@ app.delete('/api/notes/:_id', (req, res) => {
 	var note_id = req.params._id;
 	console.log("Deleted note ", note_id);
 	Note.remove({_id: note_id}, function(err, doc) {
-		res.json();
+		res.json({});
 	});
 })
 

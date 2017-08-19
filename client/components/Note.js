@@ -15,6 +15,7 @@ class Note extends React.Component {
 		this.handleNoteText = this.handleNoteText.bind(this);
 		this.discardEditNote = this.discardEditNote.bind(this);
 		this.saveEditNote = this.saveEditNote.bind(this);
+		this.startDeleteNote = this.startDeleteNote.bind(this);
 	}
 
 	startEditNote(e) {
@@ -43,6 +44,12 @@ class Note extends React.Component {
 		})
 	}
 
+	startDeleteNote() {
+		let id = this.props.note._id
+		console.log("Note id in startDeleteNote is " + id)
+		this.props.deleteNote(id)
+	}
+
 	render() {
 
 		let textArea = null;
@@ -59,7 +66,7 @@ class Note extends React.Component {
 
 		return (
 			<div className = "note" style={{ backgroundColor: this.props.note.color }} onDoubleClick={this.startEditNote}>
-				<button onClick={ deleteNote(this.props.note._id) }><i className="fa fa-times" aria-hidden="true"></i></button>	
+				<button onClick={this.startDeleteNote}><i className="fa fa-times" aria-hidden="true"></i></button>	
 				<p>{this.props.note._id}</p>
 				{textArea}
 			</div>
@@ -69,16 +76,17 @@ class Note extends React.Component {
 }
 
 Note.propTypes = {
-  note: React.PropTypes.object.isRequired
+  note: React.PropTypes.object.isRequired,
+  deleteNote: React.PropTypes.func.isRequired
 }
 
-function mapStateToProps(state) {
+/*function mapStateToProps(state) {
 	return {
 		notes: state.notes
 	}
-}
+}*/
 
-export default connect(mapStateToProps, { deleteNote, UpdatingNote })(Note);
+export default connect(/*mapStateToProps,*/null, { deleteNote, UpdatingNote })(Note);
 /*export default connect(
 	state => ({
 		//note: state.note
