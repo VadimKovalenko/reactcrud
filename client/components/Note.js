@@ -50,6 +50,10 @@ class Note extends React.Component {
 		this.props.deleteNote(id)
 	}
 
+	componentWillUnmount() {
+		console.log("Note deleted")
+	}
+
 	render() {
 
 		let textArea = null;
@@ -66,8 +70,7 @@ class Note extends React.Component {
 
 		return (
 			<div className = "note" style={{ backgroundColor: this.props.note.color }} onDoubleClick={this.startEditNote}>
-				<button onClick={this.startDeleteNote}><i className="fa fa-times" aria-hidden="true"></i></button>	
-				<p>{this.props.note._id}</p>
+				<button className = "del-btn" onClick={this.startDeleteNote}><i className="fa fa-times" aria-hidden="true"></i></button>
 				{textArea}
 			</div>
 		)

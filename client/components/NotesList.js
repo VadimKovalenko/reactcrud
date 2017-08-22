@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Component } from 'react';
 import { fetchNotes } from './../actions/notesActions';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 import store from './App';
 
@@ -19,10 +20,15 @@ class NotesList extends React.Component	{
 		return (
 			<div>
 				<NoteForm/>
-				<ul>
-					{this.props.notes.map((note) => 
-						<Note note={note} key={note._id}/>)}
-				</ul>
+					<ul>
+					<CSSTransitionGroup
+          transitionName="note-animation"
+          transitionEnterTimeout={1500}
+          transitionLeaveTimeout={300}>
+						{this.props.notes.map((note) => 
+							<Note note={note} key={note._id}/>)}
+					</CSSTransitionGroup>	
+					</ul>
 			</div>
 		);
  }

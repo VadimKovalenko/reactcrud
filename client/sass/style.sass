@@ -1,17 +1,117 @@
+body
+	background: #243044
+	font-family: Arial, Helvetica, sans-serif
+
 h1
-	color: red
+	color: #fff
+	font-family: 'Pacifico', cursive
+	font-weight: 100
+	font-size: 38px
 
 a
 	text-align: center
 
-h3
-	color: green
-
-p
-	font-size: 16px
+p, label
+	font-size: 18px
 	box-sizing: border-box
 
-div.myItem
-	border-radius: 10px
-	display: flex
-	justify-content: center	
+
+div.note_color
+	display: inline-block
+	height: 80px
+	width: 80px
+	cursor: pointer
+
+.note_active
+	box-shadow: 0px 6px 18px 0px rgba(255,255,255,0.28)
+	display: inline-block
+	height: 80px
+	width: 80px
+	cursor: pointer
+
+.note
+	display: inline-block
+	width: 150px
+	height: auto
+	margin: 10px
+	cursor: pointer
+	vertical-align: top
+	padding: 10px
+
+.del-btn
+	position: relative
+	left: 135px
+	top: -9px
+	background: none
+	border: none
+	padding: 4px
+	cursor: pointer
+	color: #333
+	&:focus
+	  outline: none
+.text-area-wrap
+	input[type="text"]
+		background: none
+		border: none
+		width: 100%
+		&:focus
+	  	outline: none
+.add-note-btn
+	background: #4d89ec
+	color: #fff
+	border: none
+	font-size: 16px
+	font-weight: bold
+	padding: 8px 30px
+	border-radius: 1em
+	cursor: pointer
+	&:focus
+	  	outline: none
+.form-wrapper
+	text-align: center
+	width: 600px
+	margin-right: auto
+	margin-left: auto
+	background: rgba(255, 255, 255, .1)
+	margin-top: 20px
+	padding-top: 5px
+	padding-bottom: 20px
+	.color-label
+		margin-top: 20px
+		display: block
+	p
+		font-size: 18px
+	input[type="text"]
+	  border: none
+	  border-bottom: 2px solid #fff
+	  background: none
+	  width: 420px
+	  font-size: 18px
+	  color: #fff
+	  padding-left: 8px
+	  font-family: Arial, Helvetica, sans-serif
+	  &:focus
+	  	outline: none
+	label
+		color: #fff
+
+//Animation
+@keyframes noteInit
+	0%
+		transform: scale(0) rotate(180deg)
+	100%
+		transform: scale(1)	rotate(0deg)			
+
+.note-animation-enter
+  opacity: 0.01
+
+.note-animation-enter.note-animation-enter-active
+  opacity: 1
+  animation: noteInit 1.5s ease
+
+.note-animation-leave
+  opacity: 1
+
+.note-animation-leave.note-animation-leave-active
+  opacity: 0.01
+  transition: opacity 300ms ease-in
