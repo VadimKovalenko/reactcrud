@@ -1,5 +1,5 @@
 # React CRUD Application #
-===
+
 ## Design ##
 
 ![preview](https://user-images.githubusercontent.com/8011539/29607688-ab4255c4-87fa-11e7-9f23-6d61745bf58b.png)
