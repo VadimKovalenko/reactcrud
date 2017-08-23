@@ -6,7 +6,7 @@
 
 ## Structure ##
 
-![react-crud-schema](https://user-images.githubusercontent.com/8011539/29223805-8deb6fa2-7ed0-11e7-8eea-ed645b37c15b.png)
+![react-crud-schema](https://user-images.githubusercontent.com/8011539/29621056-54775f9a-8828-11e7-9a70-3e6560a20fe8.png)
 
 Installation:
 
