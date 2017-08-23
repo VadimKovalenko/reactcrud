@@ -33,12 +33,12 @@ app.post('/api/notes', (req, res) => {
 	newNote.save(function(err, note) {
 		if (err) return console.error(err);
 		res.send(note);
-		console.log('Request from server to add note ' + note);
+		//console.log('Request from server to add note ' + note);
 	});
 })
 
 app.put('/api/notes/:id/updating', (req, res) => {
-	console.log(req.body);
+	//console.log(req.body);
 	Note.findOneAndUpdate(
 		{_id: req.body.id},
 		{
@@ -50,25 +50,17 @@ app.put('/api/notes/:id/updating', (req, res) => {
 		function(err, note) {
 			if (err) return res.send(err)
 			res.json(note);
-			console.log('Request from server to update note ' + note);
+			//console.log('Request from server to update note ' + note);
 		});
 })	
 
 app.delete('/api/notes/:_id', (req, res) => {
 	var note_id = req.params._id;
-	console.log("Deleted note ", note_id);
+	//console.log("Deleted note ", note_id);
 	Note.remove({_id: note_id}, function(err, doc) {
 		res.json({});
 	});
 })
-
-/*app.use((req, res) => {
-	res.status(404).json({
-		errors: {
-			global: "Something went wrong"
-		}
-	})
-})*/
 
 const server = app.listen(serverPort, function() {
     console.log(`Server is up and running on port ${serverPort}`);

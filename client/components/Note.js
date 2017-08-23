@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { connect } from 'react-redux';
 
 import { deleteNote, UpdatingNote } from './../actions/notesActions';
@@ -46,12 +47,7 @@ class Note extends React.Component {
 
 	startDeleteNote() {
 		let id = this.props.note._id
-		console.log("Note id in startDeleteNote is " + id)
 		this.props.deleteNote(id)
-	}
-
-	componentWillUnmount() {
-		console.log("Note deleted")
 	}
 
 	render() {
@@ -62,16 +58,16 @@ class Note extends React.Component {
 			textArea = <p>{this.state.noteText}</p>
 		}	else {
 			textArea = <div className="text-area-wrap">
-									 <input type="text" value={this.state.noteText} onChange = {this.handleNoteText}/>
-									 <button onClick={this.saveEditNote}><i className="fa fa-check" aria-hidden="true"></i></button>
-									 <button onClick={this.discardEditNote}><i className="fa fa-share" aria-hidden="true"></i></button>
+									 <textarea type="text" value = {this.state.noteText} onChange = {this.handleNoteText}></textarea>
+									 <button className = "edit-note-btn" onClick={this.saveEditNote}><i className="fa fa-check" aria-hidden="true"></i></button>
+									 <button className = "discard-edit-note-btn" onClick={this.discardEditNote}><i className="fa fa-share" aria-hidden="true"></i></button>
 								 </div>
 		}
 
 		return (
 			<div className = "note" style={{ backgroundColor: this.props.note.color }} onDoubleClick={this.startEditNote}>
-				<button className = "del-btn" onClick={this.startDeleteNote}><i className="fa fa-times" aria-hidden="true"></i></button>
-				{textArea}
+				<div className = "del-btn-wrapper"><button className = "del-btn" onClick={this.startDeleteNote}><i className="fa fa-times" aria-hidden="true"></i></button></div>
+				<div className = "note-text-wrapper">{textArea}</div>
 			</div>
 		)
 	}
@@ -80,26 +76,8 @@ class Note extends React.Component {
 
 Note.propTypes = {
   note: React.PropTypes.object.isRequired,
-  deleteNote: React.PropTypes.func.isRequired
+  deleteNote: React.PropTypes.func.isRequired,
+  UpdatingNote: React.PropTypes.func.isRequired
 }
 
-/*function mapStateToProps(state) {
-	return {
-		notes: state.notes
-	}
-}*/
-
-export default connect(/*mapStateToProps,*/null, { deleteNote, UpdatingNote })(Note);
-/*export default connect(
-	state => ({
-		//note: state.note
-	}),
-	dispatch => ({
-		id => {
-			dispatch({
-				type: 'DEL_NOTE',
-				payload: id
-			})
-		}
-	})
-)(Note);*/
+export default connect(null, { deleteNote, UpdatingNote })(Note);

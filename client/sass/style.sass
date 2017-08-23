@@ -29,19 +29,27 @@ div.note_color
 	width: 80px
 	cursor: pointer
 
+.notes-container
+	margin-left: auto
+	margin-right: auto
+	width: 1200px
+
+
 .note
-	display: inline-block
-	width: 150px
+	width: 220px
 	height: auto
 	margin: 10px
 	cursor: pointer
-	vertical-align: top
-	padding: 10px
+	.note-text-wrapper
+		padding-left: 10px
+		padding-right: 10px
+	.del-btn-wrapper
+		background: rgba(0, 0, 0, 0.15)	
 
 .del-btn
 	position: relative
-	left: 135px
-	top: -9px
+	left: 195px
+	top: 0px
 	background: none
 	border: none
 	padding: 4px
@@ -50,10 +58,13 @@ div.note_color
 	&:focus
 	  outline: none
 .text-area-wrap
-	input[type="text"]
+	padding-top: 10px
+	padding-bottom: 10px
+	textarea
 		background: none
 		border: none
-		width: 100%
+		width: 200px
+		max-width: 200px
 		&:focus
 	  	outline: none
 .add-note-btn
@@ -67,6 +78,16 @@ div.note_color
 	cursor: pointer
 	&:focus
 	  	outline: none
+.edit-note-btn,
+.discard-edit-note-btn
+	background: none
+	border: none
+	color: #333
+	cursor: pointer
+	&:focus
+	  	outline: none
+
+
 .form-wrapper
 	text-align: center
 	width: 600px
@@ -96,22 +117,13 @@ div.note_color
 		color: #fff
 
 //Animation
-@keyframes noteInit
+@keyframes formInit
 	0%
-		transform: scale(0) rotate(180deg)
+		transform: scale(0.8)
+		opacity: 0.01
 	100%
-		transform: scale(1)	rotate(0deg)			
+		transform: scale(1)
+		opacity: 1
 
-.note-animation-enter
-  opacity: 0.01
-
-.note-animation-enter.note-animation-enter-active
-  opacity: 1
-  animation: noteInit 1.5s ease
-
-.note-animation-leave
-  opacity: 1
-
-.note-animation-leave.note-animation-leave-active
-  opacity: 0.01
-  transition: opacity 300ms ease-in
+.form-wrapper
+	animation: formInit 500ms linear

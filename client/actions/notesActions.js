@@ -5,7 +5,6 @@ export const UPDATED_NOTE = 'UPDATED_NOTE';
 
 
 function handleResponse(response) {
-	console.log(response.status);
 	if(response.ok) {
 		return response.json();
 	} else {
@@ -37,7 +36,6 @@ function deleteNoteAction(noteId) {
 }
 
 function UpdatingNoteAction(note) {
-	console.log("UpdatingNoteAction " + note);
 	return {
 		type: UPDATED_NOTE,
 		note
@@ -91,7 +89,6 @@ export function UpdatingNote(data) {
 
 export function deleteNote(id) {
 	return dispatch => {
-		console.log("Note deleted", id);
 		return fetch(`/api/notes/${id}`, {
 			method: 'delete',
 			headers: {

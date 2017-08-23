@@ -20,8 +20,3 @@ export default class App extends React.Component {
 		);
   }
 }
-
-//Следим за изменениями в store и выполняем данный код каждый раз, когда в него приходят новые данные
-store.subscribe(() => {
-	console.log('subscribe', store.getState());
-});
