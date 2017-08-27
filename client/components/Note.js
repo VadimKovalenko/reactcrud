@@ -25,7 +25,7 @@ class Note extends React.Component {
 
 	handleNoteText(e) {
 		this.setState({
-			noteText: e.target.value 
+			noteText: e.target.value
 		})
 	}
 
@@ -41,7 +41,7 @@ class Note extends React.Component {
 		let id = this.props.note._id
 		this.props.UpdatingNote({id, text})
 		this.setState({
-			showTextarea: false 
+			showTextarea: false
 		})
 	}
 
@@ -58,10 +58,10 @@ class Note extends React.Component {
 			textArea = <p>{this.state.noteText}</p>
 		}	else {
 			textArea = <div className="text-area-wrap">
-									 <textarea type="text" value = {this.state.noteText} onChange = {this.handleNoteText}></textarea>
-									 <button className = "edit-note-btn" onClick={this.saveEditNote}><i className="fa fa-check" aria-hidden="true"></i></button>
-									 <button className = "discard-edit-note-btn" onClick={this.discardEditNote}><i className="fa fa-share" aria-hidden="true"></i></button>
-								 </div>
+				<textarea type="text" value = {this.state.noteText} onChange = {this.handleNoteText}></textarea>
+				<button className = "edit-note-btn" onClick={this.saveEditNote}><i className="fa fa-check" aria-hidden="true"></i></button>
+				<button className = "discard-edit-note-btn" onClick={this.discardEditNote}><i className="fa fa-share" aria-hidden="true"></i></button>
+			</div>
 		}
 
 		return (
@@ -75,9 +75,9 @@ class Note extends React.Component {
 }
 
 Note.propTypes = {
-  note: React.PropTypes.object.isRequired,
-  deleteNote: React.PropTypes.func.isRequired,
-  UpdatingNote: React.PropTypes.func.isRequired
+	note: React.PropTypes.object.isRequired,
+	deleteNote: React.PropTypes.func.isRequired,
+	UpdatingNote: React.PropTypes.func.isRequired
 }
 
 export default connect(null, { deleteNote, UpdatingNote })(Note);

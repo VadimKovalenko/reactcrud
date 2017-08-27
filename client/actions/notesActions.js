@@ -43,46 +43,46 @@ function UpdatingNoteAction(note) {
 }
 
 export function fetchNotes() {
-	return dispatch => 
-		fetch('/api/notes')
-			.then(  
-		    function(response) {  
-		      if (response.status !== 200) {  
-		        console.log('Looks like there was a problem. Status Code: ' +  response.status);  
-		        return;  
-		      }  
-		      response.json()
-			      .then( note => dispatch(setNotes(note)))
-		    }  
-		  )  
-		  .catch(function(err) {  
-		    console.log('Fetch Error :-S', err);  
-		  });
+	return dispatch =>
+	fetch('/api/notes')
+	.then(
+		function(response) {
+			if (response.status !== 200) {
+				console.log('Looks like there was a problem. Status Code: ' +  response.status);
+				return;
+			}
+			response.json()
+			.then( note => dispatch(setNotes(note)))
+		}
+	)
+	.catch(function(err) {
+		console.log('Fetch Error :-S', err);
+	});
 }
 
 export function saveNote(data) {
 	return dispatch => {
-			return fetch('/api/notes', {
-				method: 'post',
-				body: JSON.stringify(data),
-				headers: {
-					"Content-Type": "application/json"
-				}
-			}).then(handleResponse)
-				.then(data => dispatch(addNoteAction(data)))
-	}	
+		return fetch('/api/notes', {
+			method: 'post',
+			body: JSON.stringify(data),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then(handleResponse)
+		.then(data => dispatch(addNoteAction(data)))
+	}
 }
 
 export function UpdatingNote(data) {
 	return dispatch => {
-			return fetch(`/api/notes/${data.id}/updating`, {
-				method: 'put',
-				body: JSON.stringify(data),
-				headers: {
-					"Content-Type": "application/json"
-				}
-			}).then(handleResponse)
-				.then(data => dispatch(UpdatingNoteAction(data)))
+		return fetch(`/api/notes/${data.id}/updating`, {
+			method: 'put',
+			body: JSON.stringify(data),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then(handleResponse)
+		.then(data => dispatch(UpdatingNoteAction(data)))
 	}
 }
 
@@ -95,6 +95,6 @@ export function deleteNote(id) {
 				"Content-Type": "application/json"
 			}
 		}).then(handleResponse)
-			.then(() => dispatch(deleteNoteAction(id)))
+		.then(() => dispatch(deleteNoteAction(id)))
 	}
 } 

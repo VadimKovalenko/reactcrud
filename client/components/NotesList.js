@@ -20,7 +20,7 @@ class NotesList extends React.Component	{
 		}
 	}
 
-	
+
 	componentDidMount() {
 		this.props.fetchNotes();
 	}
@@ -30,24 +30,24 @@ class NotesList extends React.Component	{
 		return (
 			<div>
 				<NoteForm/>
-        <Masonry className="notes-container">
-					{this.props.notes.map((note) => 
+				<Masonry className="notes-container">
+					{this.props.notes.map((note) =>
 						<Note note={note} key={note._id}/>)}
-				</Masonry>
-			</div>
-		);
- }
-}
-
-NotesList.propTypes = {
-	notes: React.PropTypes.array.isRequired,
-	fetchNotes: React.PropTypes.func.isRequired
-}
-
-function mapStateToProps(state) {
-	return {
-		notes: state.notes
+					</Masonry>
+				</div>
+			);
+		}
 	}
-}
 
-export default connect(mapStateToProps, {fetchNotes})(NotesList);
+	NotesList.propTypes = {
+		notes: React.PropTypes.array.isRequired,
+		fetchNotes: React.PropTypes.func.isRequired
+	}
+
+	function mapStateToProps(state) {
+		return {
+			notes: state.notes
+		}
+	}
+
+	export default connect(mapStateToProps, {fetchNotes})(NotesList);

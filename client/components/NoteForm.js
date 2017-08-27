@@ -29,22 +29,22 @@ class NoteForm extends React.Component {
     })
   }
 
-	addNote(e) {
-		e.preventDefault();
+  addNote(e) {
+    e.preventDefault();
     let text = this.state.text;
     let color = this.state.color;
     this.props.saveNote({ text, color });
     text, color = '';
-	}
+  }
 
   render() {
     return (
-     	<div className="form-wrapper" style={{textAlign: 'center'}}>
+      <div className="form-wrapper" style={{textAlign: 'center'}}>
         <h1>Create ToDo</h1>
         <form onSubmit={this.addNote}>
           <label htmlFor="text">Type note text</label>
           <input type="text" name="text" value={this.state.text} onChange={this.handleChange}/>
-          <br/> 
+          <br/>
           <label htmlFor="color" className="color-label">Choose color</label>
           <br/>
           <div className="color-picker">
@@ -61,10 +61,10 @@ class NoteForm extends React.Component {
             }
           </div>
           <br/>
-        	<button className = "add-note-btn">Create</button>
+          <button className = "add-note-btn">Create</button>
         </form>
       </div>);
+    }
   }
-}
 
-export default connect(null, { saveNote })(NoteForm);
+  export default connect(null, { saveNote })(NoteForm);
